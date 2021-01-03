@@ -7,12 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// http://localhost:8000/blog/board
+// http://localhost:8080/blog/board
 @WebServlet("/board")
 public class BoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
+
     public BoardController() {
         super();
     }
@@ -26,7 +25,7 @@ public class BoardController extends HttpServlet {
 	}
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 }
