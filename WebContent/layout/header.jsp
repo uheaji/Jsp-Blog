@@ -31,6 +31,3 @@
 </nav>
 <br>
 
-
-</body>
-</html>
