@@ -2,6 +2,7 @@ package com.cos.blog.web;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,9 +40,11 @@ public class BoardController extends HttpServlet {
 		if(cmd.equals("saveForm")) {
 			User principal = (User) session.getAttribute("principal");
 			if(principal != null) {
-				response.sendRedirect("board/saveForm.jsp");
+				RequestDispatcher dis = request.getRequestDispatcher("board/saveForm.jsp");
+				dis.forward(request, response);
 			}else {
-				response.sendRedirect("user/loginForm.jsp");
+				RequestDispatcher dis = request.getRequestDispatcher("user/loginForm.jsp");
+				dis.forward(request, response);
 			}	
 		}else if(cmd.equals("save")) {
 			int userId = Integer.parseInt(request.getParameter("userId"));
