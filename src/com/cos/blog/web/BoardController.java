@@ -68,28 +68,39 @@ public class BoardController extends HttpServlet {
 				Script.back(response, "글쓰기실패");
 			}
 		} else if (cmd.equals("list")) {
-			int page = Integer.parseInt(request.getParameter("page"));  // 최초 : 0, Next : 1, Next: 2
+			int page = Integer.parseInt(request.getParameter("page")); // 최초 : 0, Next : 1, Next: 2
 			List<Board> boards = boardService.글목록보기(page);
 			request.setAttribute("boards", boards);
-			
+
 			// 계산 (전체 데이터수랑 한페이지몇개 - 총 몇페이지 나와야되는 계산) 3page라면 page의 맥스값은 2
-			// page == 2가 되는 순간  isEnd = true
+			// page == 2가 되는 순간 isEnd = true
 			// request.setAttribute("isEnd", true);
 			int boardCount = boardService.글개수();
-			int lastPage = (boardCount-1)/4; // 2/4 = 0, 3/4 = 0, 4/4 = 1, 9/4 = 2 ( 0page, 1page, 2page) 
-			double currentPosition = (double)page/(lastPage)*100;
-			
+			int lastPage = (boardCount - 1) / 4; // 2/4 = 0, 3/4 = 0, 4/4 = 1, 9/4 = 2 ( 0page, 1page, 2page)
+			double currentPosition = (double) page / (lastPage) * 100;
+
 			request.setAttribute("lastPage", lastPage);
 			request.setAttribute("currentPosition", currentPosition);
 			RequestDispatcher dis = request.getRequestDispatcher("board/list.jsp");
 			dis.forward(request, response);
-		}else if(cmd.equals("detail")) {
+		} else if (cmd.equals("detail")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			DetailRespDto dto = boardService.글상세보기(id); // board테이블+user테이블 = 조인된 데이터!!
 			request.setAttribute("dto", dto);
-			//System.out.println("DetailRespDto : "+dto);
+			// System.out.println("DetailRespDto : "+dto);
 			RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
 			dis.forward(request, response);
+		} else if (cmd.equals("detail")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			DetailRespDto dto = boardService.글상세보기(id); // board테이블+user테이블 = 조인된 데이터!!
+			if (dto == null) {
+				Script.back(response, "상세보기에 실패하였습니다");
+			} else {
+				request.setAttribute("dto", dto);
+				// System.out.println("DetailRespDto : "+dto);
+				RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
+				dis.forward(request, response);
+			}
 		}
 	}
 

@@ -15,10 +15,16 @@ public class BoardService {
 		boardDao = new BoardDao();
 	}
 	
-	public DetailRespDto 글상세보기(int id) {
-		// 조회수 업데이트치기
-		return boardDao.findById(id);
-	}
+	// 하나의 서비스안에 여러가지 DB관련 로직이 섞여 있다.
+		public DetailRespDto 글상세보기(int id) {
+			// 조회수 업데이트하기
+			int result = boardDao.updateReadCount(id);
+			if(result == 1) {
+				return boardDao.findById(id);
+			}else {
+				return null;
+			}
+		}
 	
 	public int 글개수() {
 		return boardDao.count();
