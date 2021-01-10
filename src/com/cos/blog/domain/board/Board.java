@@ -1,7 +1,6 @@
 package com.cos.blog.domain.board;
 
 import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,4 +17,8 @@ public class Board {
 	private String content;
 	private int readCount; // 조회수 디폴트값 0
 	private Timestamp createDate;
+
+	public String getTitle() {
+		return title.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+	}
 }
