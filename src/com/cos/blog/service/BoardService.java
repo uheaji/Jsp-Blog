@@ -6,6 +6,7 @@ import com.cos.blog.domain.board.Board;
 import com.cos.blog.domain.board.BoardDao;
 import com.cos.blog.domain.board.dto.DetailRespDto;
 import com.cos.blog.domain.board.dto.SaveReqDto;
+import com.cos.blog.domain.board.dto.UpdateReqDto;
 
 public class BoardService {
 
@@ -40,6 +41,10 @@ public class BoardService {
 	
 	public List<Board> 글목록보기(int page){
 		return boardDao.findAll(page);
+	}
+	
+	public int 글수정(UpdateReqDto dto) {
+		return boardDao.update(dto);
 	}
 
 }
