@@ -13,6 +13,23 @@ import com.cos.blog.domain.user.User;
 
 public class BoardDao {
 	
+	public int deleteById(int id) { // 회원가입
+		String sql = "DELETE FROM board WHERE id = ?";
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // 무조건 실행
+			DB.close(conn, pstmt);
+		}
+		return -1;
+	}
+	
 	public int updateReadCount(int id) { // 조회수
 		String sql = "UPDATE board SET readCount = readCount+1 WHERE id = ?";
 		Connection conn = DB.getConnection();
