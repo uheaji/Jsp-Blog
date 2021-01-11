@@ -22,7 +22,7 @@ public class ForbiddenUrlConfig implements Filter{
 		HttpServletRequest request = (HttpServletRequest) req;
     	HttpServletResponse response = (HttpServletResponse) resp;
 
-    	if(request.getRequestURI().equals("/blog/") || request.getRequestURI().equals("/blog/index.jsp")) {
+    	if(request.getRequestURI().equals("/blog/") || request.getRequestURI().equals("/blog/index.jsp") || request.getRequestURI().equals("/blog/user/jusoPopup.jsp")) {
     		chain.doFilter(request, response);
     	}else {
     		PrintWriter out = response.getWriter();

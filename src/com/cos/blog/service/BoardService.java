@@ -16,6 +16,10 @@ public class BoardService {
 		boardDao = new BoardDao();
 	}
 	
+	public int 글수정(UpdateReqDto dto) {
+		return boardDao.update(dto);
+	}
+	
 	public int 글삭제(int id) {
 		return boardDao.deleteById(id);
 	}
@@ -41,10 +45,6 @@ public class BoardService {
 	
 	public List<Board> 글목록보기(int page){
 		return boardDao.findAll(page);
-	}
-	
-	public int 글수정(UpdateReqDto dto) {
-		return boardDao.update(dto);
 	}
 
 }

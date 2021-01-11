@@ -8,10 +8,10 @@
 	<div class="m-2">
 		<form class="form-inline d-flex justify-content-end"
 			action="/blog/board">
-			<input type="hidden" name="cmd" value="search" /> <input
-				type="hidden" name="page" value="0" /> <input type="text"
-				name="keyword" class="form-control mr-sm-2" placeholder="Search">
-			<button class="btn btn-primary m-1">검색</button>
+			<input type="hidden" name="cmd" value="search" />
+			<input type="hidden" name="page" value="0" /> 
+			<input type="text"	name="keyword" class="form-control mr-sm-2" placeholder="Search">
+			<button class="btn btn-primary m-1"  onclick="search()">검색</button>
 
 		</form>
 	</div>
